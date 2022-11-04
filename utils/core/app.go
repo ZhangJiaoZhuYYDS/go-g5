@@ -17,7 +17,7 @@ import (
 
 func Load() *gin.Engine {
 	//加载配置文件
-	loadConfig()
+	loadConfig("./")
 
 	//加载雪花算法
 	loadSnowFlake()
@@ -48,8 +48,8 @@ func Load() *gin.Engine {
 }
 
 // LoadConfig 加载解析config.yaml 配置文件，并赋值给全局配置utils.CONIFG
-func loadConfig() {
-	file, err := os.ReadFile("./config.yaml")
+func loadConfig(path string) {
+	file, err := os.ReadFile(path + "config.yaml")
 	if err != nil {
 		log.Fatal("配置文件读取失败：", err)
 	}
@@ -82,7 +82,25 @@ func Run(engine *gin.Engine) {
 // +----------------------------------------------------------------------
 ###########################################################################
 `)
-	if err := engine.Run(":"+G_CONFIG.Server.Port); err != nil {
+	if err := engine.Run(":" + G_CONFIG.Server.Port); err != nil {
 		log.Fatal("服务启动失败：", err)
 	}
+}
+
+// TestLoad 用于测试时 加载全局配置
+func TestLoad(path string) {
+	//加载配置文件
+	loadConfig(path)
+	//加载雪花算法
+	loadSnowFlake()
+
+	//初始化validator
+	LoadValidator()
+
+	//连接数据库
+	InitDb()
+
+	//连接Redis
+	InitRedis()
+
 }

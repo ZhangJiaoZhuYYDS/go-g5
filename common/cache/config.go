@@ -1,7 +1,8 @@
 package cache
 
 import (
-	"b5gocmf/common/daos/system"
+	. "b5gocmf/common/daos/system"
+	. "b5gocmf/common/models/system"
 	"b5gocmf/utils/core"
 	"github.com/go-redis/redis"
 )
@@ -25,7 +26,7 @@ func (c *ConfigCache) GetValue(key string) (result string)  {
 	}
 
 	if res,err:= c.redis.HGet(c.key,key).Result();err!=nil {
-		val := system.NewConfigDao().GetInfoByType(key)
+		val := NewConfigDao().GetInfoByType(key)
 		if val == nil {
 			return
 		}
@@ -37,7 +38,24 @@ func (c *ConfigCache) GetValue(key string) (result string)  {
 	return
 }
 
-func (c *ConfigCache) Flush()  {
-	core.G_Redis.Conn().Del(c.key)
+func (c *ConfigCache) FlushAll()  {
+	c.redis.Del(c.key)
 }
+
+func (c *ConfigCache) BuildAll()  {
+	c.FlushAll()
+	model := NewConfigModel()
+	list := model.NewSlice()
+	err := core.NewDao(model).SetField("type,value").Lists(list, "")
+	if err != nil {
+		return
+	}
+	var fields = map[string]any{}
+	for _,item := range *list{
+		fields[item.Type] = item.Value
+	}
+	c.redis.HMSet(c.key,fields)
+}
+
+
 

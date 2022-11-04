@@ -15,6 +15,8 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.4.2
 	github.com/jmoiron/sqlx v1.3.5
 	github.com/mssola/user_agent v0.5.3
+	github.com/patrickmn/go-cache v2.1.0+incompatible
+	github.com/shopspring/decimal v1.3.1
 	github.com/xuri/excelize/v2 v2.6.1
 	gopkg.in/yaml.v2 v2.4.0
 )
