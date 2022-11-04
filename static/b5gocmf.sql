@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 01/11/2022 22:05:53
+ Date: 04/11/2022 15:43:02
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `b5net_admin`;
 CREATE TABLE `b5net_admin`  (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint UNSIGNED NOT NULL,
   `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '登录名',
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '登录密码',
   `realname` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '人员姓名',
@@ -32,7 +32,7 @@ CREATE TABLE `b5net_admin`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 104683566088065025 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '管理员表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '管理员表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of b5net_admin
@@ -157,6 +157,15 @@ CREATE TABLE `b5net_login_log`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of b5net_login_log
+-- ----------------------------
+INSERT INTO `b5net_login_log` VALUES (110669113432477696, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-02 09:19:32', '2022-11-02 09:19:32');
+INSERT INTO `b5net_login_log` VALUES (110756760209330176, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-02 15:07:49', '2022-11-02 15:07:49');
+INSERT INTO `b5net_login_log` VALUES (111100041241825280, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-03 13:51:53', '2022-11-03 13:51:53');
+INSERT INTO `b5net_login_log` VALUES (111259127178596352, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-04 00:24:03', '2022-11-04 00:24:03');
+INSERT INTO `b5net_login_log` VALUES (111396667311263744, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-04 09:30:35', '2022-11-04 09:30:35');
+
+-- ----------------------------
 -- Table structure for b5net_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `b5net_menu`;
@@ -166,12 +175,12 @@ CREATE TABLE `b5net_menu`  (
   `parent_id` bigint NOT NULL DEFAULT 0 COMMENT '父菜单ID',
   `url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '请求地址',
   `target` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0' COMMENT '打开方式（0页签 1新窗口）',
-  `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
+  `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
   `perms` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '权限标识',
   `icon` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '菜单图标',
   `note` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '备注',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1' COMMENT '菜单状态（1显示 0隐藏）',
-  `is_refresh` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0' COMMENT '是否刷新（0不刷新 1刷新）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1' COMMENT '菜单状态（1显示 0隐藏）',
+  `is_refresh` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0' COMMENT '是否刷新（0不刷新 1刷新）',
   `list_sort` int NOT NULL DEFAULT 0 COMMENT '显示顺序',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
@@ -239,16 +248,16 @@ INSERT INTO `b5net_menu` VALUES (15204, '图片批量删除', 152, '', '0', 'F',
 -- ----------------------------
 DROP TABLE IF EXISTS `b5net_notice`;
 CREATE TABLE `b5net_notice`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '公告ID',
-  `title` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '公告标题',
-  `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1' COMMENT '公告类型（1通知 2公告）',
-  `desc` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公告内容',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1' COMMENT '公告状态（1正常 0关闭）',
+  `id` bigint NOT NULL COMMENT '公告ID',
+  `title` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公告标题',
+  `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1' COMMENT '公告类型（1通知 2公告）',
+  `desc` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '公告内容',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1' COMMENT '公告状态（1正常 0关闭）',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102045864926646273 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '通知公告表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '通知公告表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of b5net_notice
@@ -361,7 +370,7 @@ INSERT INTO `b5net_role_struct` VALUES (104682922295955456, 104677742527647744);
 -- ----------------------------
 DROP TABLE IF EXISTS `b5net_struct`;
 CREATE TABLE `b5net_struct`  (
-  `id` bigint NOT NULL COMMENT '部门id',
+  `id` bigint UNSIGNED NOT NULL COMMENT '部门id',
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '部门名称',
   `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '组织类型',
   `parent_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
@@ -390,68 +399,21 @@ INSERT INTO `b5net_struct` VALUES (104677839734837248, '前端开发组', 'team'
 INSERT INTO `b5net_struct` VALUES (104677894931877888, '后端开发组', 'team', '冰舞科技,山东总公司,研发部', 104677601469009920, '0,100,104677500600193024,104677601469009920', 10, '', '', '', '1', '2022-10-16 20:32:34', '2022-10-16 20:32:34');
 
 -- ----------------------------
--- Table structure for b5net_wechat_access
--- ----------------------------
-DROP TABLE IF EXISTS `b5net_wechat_access`;
-CREATE TABLE `b5net_wechat_access`  (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-  `access_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-  `jsapi_ticket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-  `access_token_add` int NOT NULL DEFAULT 0,
-  `jsapi_ticket_add` int NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `appid`(`appid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '微信jsapi和access' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of b5net_wechat_access
--- ----------------------------
-INSERT INTO `b5net_wechat_access` VALUES (1, 'wx2ba634598c7df708', '56_1rs0VzqcoQD17nyWWUQMzhzRkrGgm8aYR2f6zS2Bpx22SYu7YqrsUdAf5Vd0GULJFQ1CKMaWfIqAplnP8Ks8GeYlAzbe8cgYoUF9kUVV-OQ2dJXr-BSBn50XqI0xScTCctMLRRJEComk1SvZTIPdADACRY', 'sM4AOVdWfPE4DxkXGEs8VEHh_EQ4eLTYEqfB5PSBsfjeivfj4e6h5yEFTVP-_EIn78RGwPetriPcft2bevEGcg', 1650606511, 1650606511);
-
--- ----------------------------
--- Table structure for b5net_wechat_users
--- ----------------------------
-DROP TABLE IF EXISTS `b5net_wechat_users`;
-CREATE TABLE `b5net_wechat_users`  (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `openid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '唯一标识',
-  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '公众号参数',
-  `nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '昵称',
-  `headimg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '头像地址',
-  `type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '所属活动',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '资料更新时间',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
-  `sex` tinyint(1) NOT NULL DEFAULT 0 COMMENT '性别',
-  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '城市',
-  `country` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '国家',
-  `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '省份',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态',
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `openid`(`openid`, `appid`, `type`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '微信用户信息表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of b5net_wechat_users
--- ----------------------------
-INSERT INTO `b5net_wechat_users` VALUES (1, 'oBi_at-f8RORVDzNs-DY42Gx2Z5Y', 'wx2ba634598c7df708', '李先生', 'https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eo5thwrUYkscpLLpLc8gx4q6CL8nxm7Ciaicjc9icMYCYEsXWaGsbkjETycFAZMVUIGmiazSDiaib7XKOgw/132', '', '2022-04-22 05:44:41', '2022-04-22 05:44:41', 0, '', '', '', 1);
-
--- ----------------------------
 -- Table structure for demo_media
 -- ----------------------------
 DROP TABLE IF EXISTS `demo_media`;
 CREATE TABLE `demo_media`  (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `img` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '单图',
-  `imgs` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '多图',
-  `crop` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '裁剪图片',
-  `video` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '视频',
-  `file` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '单文件',
-  `files` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '多文件',
+  `id` bigint UNSIGNED NOT NULL,
+  `img` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '单图',
+  `imgs` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '多图',
+  `crop` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '裁剪图片',
+  `video` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '视频',
+  `file` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '单文件',
+  `files` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '多文件',
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 110097978957500417 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of demo_media
