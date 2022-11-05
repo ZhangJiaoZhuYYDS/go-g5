@@ -8,15 +8,19 @@
 /////      使用方法 G_Redis.Conn().Set     /////
 /////      G_Redis.Conn("xxx") 可以传入redis标识前缀 默认为default     /////
 
+/////      使用分布式redis，G_Redis.HashConn("key").Get("key")  /////
+
 package core
 
 import (
+	"b5gocmf/utils/cryptic"
 	"github.com/go-redis/redis"
 	"log"
 )
 
 type B5Redis struct {
 	List map[string]*redis.Client
+	consistentHash *cryptic.ConsistentHashMap
 }
 
 // InitRedis redis配置初始化
@@ -47,6 +51,9 @@ func (db *B5Redis) Conn(args ...string) *redis.Client {
 
 // parseItem 解析并创建连接
 func (db *B5Redis) parseItem() {
+	//创建一致性hash
+	db.consistentHash = cryptic.NewConsistentHash(5,nil)
+
 	list := make(map[string]*redis.Client)
 	for key, item := range G_CONFIG.Redis {
 		options := &redis.Options{
@@ -54,8 +61,16 @@ func (db *B5Redis) parseItem() {
 			Password:     item.Password,
 			MinIdleConns: 10,
 		}
+		//将redis配置标识 放入到节点
+		db.consistentHash.Add(key)
 		client := redis.NewClient(options)
 		list[key] = client
 	}
 	db.List = list
+}
+
+
+// HashConn 获取缓存标识对应的redis配置标识
+func (db *B5Redis) HashConn(key string) *redis.Client {
+	return db.Conn(db.consistentHash.Get(key))
 }
