@@ -26,12 +26,14 @@ func (c *ConfigCache) GetValue(key string) (result string)  {
 	}
 
 	if res,err:= c.redis.HGet(c.key,key).Result();err!=nil {
-		val := NewConfigDao().GetInfoByType(key)
-		if val == nil {
-			return
-		}
-		result = val.Value
-		c.redis.HSet(c.key,key,result)
+		doRes, _ := core.G_Single.Do(c.key, func() (interface{}, error) {
+			if val := NewConfigDao().GetInfoByType(key); val != nil {
+				c.redis.HSet(c.key, key, result)
+				return val, nil
+			}
+			return "", nil
+		})
+		result = doRes.(string)
 	}else{
 		result = res
 	}
