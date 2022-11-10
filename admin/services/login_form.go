@@ -63,6 +63,7 @@ func (l *LoginForm) Login(ctx *gin.Context) error {
 				}
 			}
 		}
+		loginData.RoleList = roleList
 	}
 
 	if loginData.IsAdmin != "1" && len(roleList) < 1 {

@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 04/11/2022 15:43:02
+ Date: 10/11/2022 15:33:22
 */
 
 SET NAMES utf8mb4;
@@ -38,7 +38,10 @@ CREATE TABLE `b5net_admin`  (
 -- Records of b5net_admin
 -- ----------------------------
 INSERT INTO `b5net_admin` VALUES (10000, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '超管', '1', '超级管理员', '2020-12-24 10:50:56', '2022-04-13 05:49:00');
-INSERT INTO `b5net_admin` VALUES (104683566088065024, 'test', 'e10adc3949ba59abbe56e057f20f883e', 'test', '1', '', '2022-10-16 20:55:07', '2022-10-30 16:33:27');
+INSERT INTO `b5net_admin` VALUES (104683566088065024, 'test', 'e10adc3949ba59abbe56e057f20f883e', 'test', '1', '', '2022-10-16 20:55:07', '2022-11-10 15:32:10');
+INSERT INTO `b5net_admin` VALUES (113601612861149184, 'test1', 'e10adc3949ba59abbe56e057f20f883e', 'test1', '1', '', '2022-11-10 11:32:15', '2022-11-10 15:32:14');
+INSERT INTO `b5net_admin` VALUES (113602333207695360, 'test2', 'e10adc3949ba59abbe56e057f20f883e', 'test2', '1', '', '2022-11-10 11:35:06', '2022-11-10 15:32:24');
+INSERT INTO `b5net_admin` VALUES (113602602515566592, 'test3', 'e10adc3949ba59abbe56e057f20f883e', 'test3', '1', '', '2022-11-10 11:36:11', '2022-11-10 15:32:30');
 
 -- ----------------------------
 -- Table structure for b5net_admin_pos
@@ -54,7 +57,6 @@ CREATE TABLE `b5net_admin_pos`  (
 -- Records of b5net_admin_pos
 -- ----------------------------
 INSERT INTO `b5net_admin_pos` VALUES (10000, 1);
-INSERT INTO `b5net_admin_pos` VALUES (104683566088065024, 3);
 
 -- ----------------------------
 -- Table structure for b5net_admin_role
@@ -70,7 +72,10 @@ CREATE TABLE `b5net_admin_role`  (
 -- Records of b5net_admin_role
 -- ----------------------------
 INSERT INTO `b5net_admin_role` VALUES (10000, 1);
-INSERT INTO `b5net_admin_role` VALUES (104683566088065024, 104682922295955456);
+INSERT INTO `b5net_admin_role` VALUES (104683566088065024, 113603187126046720);
+INSERT INTO `b5net_admin_role` VALUES (113601612861149184, 104682922295955456);
+INSERT INTO `b5net_admin_role` VALUES (113602333207695360, 104682922295955456);
+INSERT INTO `b5net_admin_role` VALUES (113602602515566592, 104682922295955456);
 
 -- ----------------------------
 -- Table structure for b5net_admin_struct
@@ -85,7 +90,10 @@ CREATE TABLE `b5net_admin_struct`  (
 -- Records of b5net_admin_struct
 -- ----------------------------
 INSERT INTO `b5net_admin_struct` VALUES (10000, 100);
-INSERT INTO `b5net_admin_struct` VALUES (104683566088065024, 104677839734837248);
+INSERT INTO `b5net_admin_struct` VALUES (104683566088065024, 104677601469009920);
+INSERT INTO `b5net_admin_struct` VALUES (113601612861149184, 104677839734837248);
+INSERT INTO `b5net_admin_struct` VALUES (113602333207695360, 104677894931877888);
+INSERT INTO `b5net_admin_struct` VALUES (113602602515566592, 104677679562756096);
 
 -- ----------------------------
 -- Table structure for b5net_app_token
@@ -134,7 +142,7 @@ CREATE TABLE `b5net_config`  (
 INSERT INTO `b5net_config` VALUES (1, '配置分组', 'sys_config_group', 'array', '1', '', 'site:基本设置\r\nwx:微信设置\r\nsys:系统配置', '', '', '2020-12-31 14:01:18', '2022-10-16 19:41:08');
 INSERT INTO `b5net_config` VALUES (2, '系统名称', 'sys_config_sysname', 'text', '1', 'site', 'B5GoCMF', '', '系统后台显示的名称', '2020-12-31 14:01:18', '2022-10-16 19:41:14');
 INSERT INTO `b5net_config` VALUES (10, '公众号appid', 'wechat_appid', 'text', '0', 'wx', '', '', '微信公众号的AppId', '2021-01-12 11:05:50', '2022-10-31 23:21:40');
-INSERT INTO `b5net_config` VALUES (11, '公众号secret', 'wechat_appsecret', 'text', '0', 'wx', '', '', '微信公众号-AppSecret', '2021-01-12 11:06:24', '2022-10-31 23:21:37');
+INSERT INTO `b5net_config` VALUES (11, '公众号secret', 'wechat_appsecret', 'text', '0', 'wx', '', '', '微信公众号-AppSecret', '2021-01-12 11:06:24', '2022-11-10 11:13:01');
 INSERT INTO `b5net_config` VALUES (104665361156149248, '组织类型', 'sys_struct_type', 'array', '1', 'sys', 'group:集团\r\ncom:公司\r\ndep:部门\r\nteam:小组', '', '', '2022-10-16 19:42:46', '2022-10-16 19:42:46');
 
 -- ----------------------------
@@ -164,6 +172,26 @@ INSERT INTO `b5net_login_log` VALUES (110756760209330176, 'admin', '127.0.0.1', 
 INSERT INTO `b5net_login_log` VALUES (111100041241825280, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-03 13:51:53', '2022-11-03 13:51:53');
 INSERT INTO `b5net_login_log` VALUES (111259127178596352, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-04 00:24:03', '2022-11-04 00:24:03');
 INSERT INTO `b5net_login_log` VALUES (111396667311263744, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-04 09:30:35', '2022-11-04 09:30:35');
+INSERT INTO `b5net_login_log` VALUES (111810395072630784, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-05 12:54:35', '2022-11-05 12:54:35');
+INSERT INTO `b5net_login_log` VALUES (112145177912545280, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-06 11:04:53', '2022-11-06 11:04:53');
+INSERT INTO `b5net_login_log` VALUES (112512221086486528, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-07 11:23:23', '2022-11-07 11:23:23');
+INSERT INTO `b5net_login_log` VALUES (113596695165538304, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '账号或密码错误', '0', '2022-11-10 11:12:42', '2022-11-10 11:12:42');
+INSERT INTO `b5net_login_log` VALUES (113596724919930880, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-10 11:12:49', '2022-11-10 11:12:49');
+INSERT INTO `b5net_login_log` VALUES (113603705848205312, 'test', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-10 11:40:34', '2022-11-10 11:40:34');
+INSERT INTO `b5net_login_log` VALUES (113627209993818112, 'admin', '127.0.0.1', '  ', ' 11.2.5170.400', ' ', '', '登录成功', '1', '2022-11-10 13:13:57', '2022-11-10 13:13:57');
+INSERT INTO `b5net_login_log` VALUES (113627828334891008, 'test', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-10 13:16:25', '2022-11-10 13:16:25');
+INSERT INTO `b5net_login_log` VALUES (113628685348638720, 'test', '127.0.0.1', '  ', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-10 13:19:49', '2022-11-10 13:19:49');
+INSERT INTO `b5net_login_log` VALUES (113633480675430400, 'test1', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '账号或密码错误', '0', '2022-11-10 13:38:53', '2022-11-10 13:38:53');
+INSERT INTO `b5net_login_log` VALUES (113633533322334208, 'test1', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '账号或密码错误', '0', '2022-11-10 13:39:05', '2022-11-10 13:39:05');
+INSERT INTO `b5net_login_log` VALUES (113633577601601536, 'test1', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-10 13:39:16', '2022-11-10 13:39:16');
+INSERT INTO `b5net_login_log` VALUES (113637260527669248, 'test1', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-10 13:53:54', '2022-11-10 13:53:54');
+INSERT INTO `b5net_login_log` VALUES (113649724162052096, 'test', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '账号或密码错误', '0', '2022-11-10 14:43:25', '2022-11-10 14:43:25');
+INSERT INTO `b5net_login_log` VALUES (113649743510376448, 'test', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '账号或密码错误', '0', '2022-11-10 14:43:30', '2022-11-10 14:43:30');
+INSERT INTO `b5net_login_log` VALUES (113649778805444608, 'test', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '账号或密码错误', '0', '2022-11-10 14:43:38', '2022-11-10 14:43:38');
+INSERT INTO `b5net_login_log` VALUES (113649806412353536, 'test', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-10 14:43:45', '2022-11-10 14:43:45');
+INSERT INTO `b5net_login_log` VALUES (113657503861968896, 'test', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-10 15:14:20', '2022-11-10 15:14:20');
+INSERT INTO `b5net_login_log` VALUES (113661923475591168, 'admin', '127.0.0.1', '本机地址', 'Chrome 105.0.0.0', 'Windows Windows 10', '', '登录成功', '1', '2022-11-10 15:31:54', '2022-11-10 15:31:54');
+INSERT INTO `b5net_login_log` VALUES (113662168980787200, 'test3', '127.0.0.1', '  ', ' 11.2.5170.400', ' ', '', '登录成功', '1', '2022-11-10 15:32:52', '2022-11-10 15:32:52');
 
 -- ----------------------------
 -- Table structure for b5net_menu
@@ -242,6 +270,10 @@ INSERT INTO `b5net_menu` VALUES (15201, '图片添加', 152, '', '0', 'F', 'demo
 INSERT INTO `b5net_menu` VALUES (15202, '图片编辑', 152, '', '0', 'F', 'demo:media:edit', '', '', '1', '0', 2, NULL, NULL);
 INSERT INTO `b5net_menu` VALUES (15203, '图片删除', 152, '', '0', 'F', 'demo:mediadrop', '', '', '1', '0', 3, NULL, NULL);
 INSERT INTO `b5net_menu` VALUES (15204, '图片批量删除', 152, '', '0', 'F', 'demo:media:drop_all', '', '', '1', '0', 4, NULL, NULL);
+INSERT INTO `b5net_menu` VALUES (15301, '新增', 153, '', '0', 'F', 'demo:test_info:add', '', '', '1', '0', 0, NULL, NULL);
+INSERT INTO `b5net_menu` VALUES (15302, '编辑', 153, '', '0', 'F', 'demo:test_info:edit', '', '', '1', '0', 0, NULL, NULL);
+INSERT INTO `b5net_menu` VALUES (15303, '删除', 153, '', '0', 'F', 'demo:test_info:drop', '', '', '1', '0', 0, NULL, NULL);
+INSERT INTO `b5net_menu` VALUES (15304, '批量删除', 153, '', '0', 'F', 'demo:test_info:drop_all', '', '', '1', '0', 0, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for b5net_notice
@@ -312,7 +344,8 @@ CREATE TABLE `b5net_role`  (
 -- Records of b5net_role
 -- ----------------------------
 INSERT INTO `b5net_role` VALUES (1, '超级管理员', 'administrator', 0, 1, '1', '超级管理员', '2020-12-28 07:42:31', '2022-10-14 11:18:52');
-INSERT INTO `b5net_role` VALUES (104682922295955456, '测试角色', 'test', 8, 1, '1', '', '2022-10-16 20:52:33', '2022-10-19 09:52:28');
+INSERT INTO `b5net_role` VALUES (104682922295955456, '员工角色', 'test', 16, 2, '1', '只能看自己信息', '2022-10-16 20:52:33', '2022-11-10 11:39:04');
+INSERT INTO `b5net_role` VALUES (113603187126046720, '部门领导', 'dept_leader', 2, 1, '1', '本部门及以下部门', '2022-11-10 11:38:30', '2022-11-10 11:38:59');
 
 -- ----------------------------
 -- Table structure for b5net_role_menu
@@ -326,26 +359,18 @@ CREATE TABLE `b5net_role_menu`  (
 -- ----------------------------
 -- Records of b5net_role_menu
 -- ----------------------------
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 1);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 106);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 105);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 10500);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 10501);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 10502);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 10503);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 10504);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 108);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 10801);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 10802);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 10803);
 INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 3);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 152);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 15201);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 15202);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 15203);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 15204);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 151);
-INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 150);
+INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 153);
+INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 15301);
+INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 15302);
+INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 15303);
+INSERT INTO `b5net_role_menu` VALUES (104682922295955456, 15304);
+INSERT INTO `b5net_role_menu` VALUES (113603187126046720, 3);
+INSERT INTO `b5net_role_menu` VALUES (113603187126046720, 153);
+INSERT INTO `b5net_role_menu` VALUES (113603187126046720, 15301);
+INSERT INTO `b5net_role_menu` VALUES (113603187126046720, 15302);
+INSERT INTO `b5net_role_menu` VALUES (113603187126046720, 15303);
+INSERT INTO `b5net_role_menu` VALUES (113603187126046720, 15304);
 
 -- ----------------------------
 -- Table structure for b5net_role_struct
@@ -356,14 +381,6 @@ CREATE TABLE `b5net_role_struct`  (
   `struct_id` bigint NOT NULL COMMENT '部门ID',
   PRIMARY KEY (`role_id`, `struct_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和部门关联表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of b5net_role_struct
--- ----------------------------
-INSERT INTO `b5net_role_struct` VALUES (104682922295955456, 104677500600193024);
-INSERT INTO `b5net_role_struct` VALUES (104682922295955456, 104677601469009920);
-INSERT INTO `b5net_role_struct` VALUES (104682922295955456, 104677679562756096);
-INSERT INTO `b5net_role_struct` VALUES (104682922295955456, 104677742527647744);
 
 -- ----------------------------
 -- Table structure for b5net_struct
@@ -428,6 +445,7 @@ DROP TABLE IF EXISTS `test_info`;
 CREATE TABLE `test_info`  (
   `id` bigint NOT NULL,
   `struct_id` bigint NOT NULL DEFAULT 0 COMMENT '组织ID',
+  `struct_levels` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '组织levels',
   `user_id` bigint NOT NULL DEFAULT 0 COMMENT '用户ID',
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
   `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1' COMMENT '状态',
@@ -436,5 +454,15 @@ CREATE TABLE `test_info`  (
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '测试数据权限' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of test_info
+-- ----------------------------
+INSERT INTO `test_info` VALUES (1, 104677601469009920, '0,100,104677500600193024', 104683566088065024, '研发部数据1', '1', '阿萨大1', '2022-11-10 11:33:43', '2022-11-10 15:14:31');
+INSERT INTO `test_info` VALUES (2, 104677601469009920, '0,100,104677500600193024', 104683566088065024, '前端数据1', '1', 'aaaa', '2022-11-10 11:34:33', '2022-11-10 15:14:30');
+INSERT INTO `test_info` VALUES (3, 104677601469009920, '0,100,104677500600193024', 104683566088065024, '后端数据11', '1', '222', '2022-11-10 15:14:28', '2022-11-10 15:14:28');
+INSERT INTO `test_info` VALUES (4, 104677679562756096, '0,100,104677500600193024', 113602602515566592, '财务数据1', '1', '333', '2022-11-10 15:14:28', '2022-11-10 15:32:59');
+INSERT INTO `test_info` VALUES (5, 100, '0', 10000, '根组织数据', '1', '44', '2022-11-10 15:14:28', '2022-11-10 15:14:28');
+INSERT INTO `test_info` VALUES (113640979554111488, 104677601469009920, '0,100,104677500600193024', 104683566088065024, 'test1前端数据222', '1', 's大苏打撒旦', '2022-11-10 14:08:40', '2022-11-10 15:14:26');
 
 SET FOREIGN_KEY_CHECKS = 1;

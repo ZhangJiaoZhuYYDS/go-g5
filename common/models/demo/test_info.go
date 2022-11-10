@@ -13,14 +13,15 @@ import (
 )
 
 type TestInfoModel struct {
-	Id    string     `db:"id" json:"id" form:"id"` //  
-	StructId    string     `db:"struct_id" json:"struct_id" form:"struct_id"` // 组织ID 
-	UserId    string     `db:"user_id" json:"user_id" form:"user_id"` // 用户ID 
-	Name    string     `db:"name" json:"name" form:"name"` // 名称 
-	Status    string     `db:"status" json:"status" form:"status"` // 状态 
-	Remark    string     `db:"remark" json:"remark" form:"remark"` // 介绍 
-	CreateTime    *time.Time     `db:"create_time" json:"create_time" form:"-"` //  
-	UpdateTime    *time.Time     `db:"update_time" json:"update_time" form:"-"` //  
+	Id           string     `json:"id" form:"id"`                                           //
+	StructId     string     `db:"struct_id" json:"struct_id" form:"-"`                      // 组织ID
+	StructLevels string     `db:"struct_levels" json:"struct_levels" form:"-"`              // 组织ID的levels
+	UserId       string     `db:"user_id" json:"user_id" form:"-"`                          // 用户ID
+	Name         string     `json:"name" form:"name" validate:"required,max=30" label:"标题"` // 标题
+	Status       string     `json:"status" form:"status" validate:"required" label:"状态"`    // 状态
+	Remark       string     `json:"remark" form:"remark"`                                   // 介绍
+	CreateTime   *time.Time `db:"create_time" json:"create_time" form:"-"`                  //
+	UpdateTime   *time.Time `db:"update_time" json:"update_time" form:"-"`                  //
 
 }
 

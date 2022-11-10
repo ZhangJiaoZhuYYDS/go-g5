@@ -9,6 +9,7 @@ package common
 import (
 	"b5gocmf/admin/lib"
 	"b5gocmf/admin/services"
+	"b5gocmf/common/services/system"
 	"b5gocmf/utils/types"
 	"github.com/gin-gonic/gin"
 	"html/template"
@@ -32,9 +33,14 @@ func NewIndexController() *IndexController {
 }
 
 func (c *IndexController) Index(ctx *gin.Context) {
-	userInfo := make(map[string]string)
-	userInfo["nick_name"] = "小李"
-	userInfo["struct"] = "冰舞网络"
+	userInfo := map[string]string{"nick_name":"","struct":""}
+
+	loginData := services.GetLoginByCtx(ctx)
+	if loginData!=nil {
+		userInfo["nick_name"] = loginData.NickName
+		userInfo["struct"] = system.NewStructService().GetName(loginData.StructId,false)
+	}
+
 	list := services.AdminMenuShowList(ctx)
 	html := ""
 	if list != nil && len(list)>0 {
@@ -44,5 +50,5 @@ func (c *IndexController) Index(ctx *gin.Context) {
 }
 
 func (c *IndexController) Home(ctx *gin.Context) {
-	c.Render(ctx, "home", gin.H{})
+	c.Render(ctx, "home", nil)
 }

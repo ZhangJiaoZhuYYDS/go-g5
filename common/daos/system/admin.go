@@ -8,6 +8,7 @@ package system
 
 import (
 	. "b5gocmf/common/models/system"
+	"b5gocmf/utils/core"
 	"sync"
 )
 
@@ -25,4 +26,14 @@ func NewAdminDao() *AdminDao {
 		instanceAdminDao = &AdminDao{Model: NewAdminModel()}
 	})
 	return instanceAdminDao
+}
+
+
+func (d *AdminDao) GetInfoById(id string) *AdminModel {
+	model := d.Model.New()
+	err := core.NewDao(d.Model).First(model, id)
+	if err != nil || model.Id == "" {
+		return nil
+	}
+	return model
 }

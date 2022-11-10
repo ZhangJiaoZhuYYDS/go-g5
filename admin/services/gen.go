@@ -305,7 +305,7 @@ func (s *GenService) createAddHtml() error{
 				"		<div class=\"col-sm-8\">\n"+
 				"			<label class=\"radio-box\">\n"+
 				"				<input type=\"radio\" name=\"status\" value=\"0\"/> 隐藏\n"+
-				"			</label>"+
+				"			</label>\n"+
 				"			<label class=\"radio-box\">\n"+
 				"				<input type=\"radio\" name=\"status\" value=\"1\" checked/> 显示\n"+
 				"			</label>\n"+
@@ -319,7 +319,7 @@ func (s *GenService) createAddHtml() error{
 			fieldHtml +="	<div class=\"form-group\">\n" +
 				"		<label class=\"col-sm-3 control-label is-required\">" + title + "：</label>\n" +
 				"		<div class=\"col-sm-8\">\n"+
-				"			<textarea type=\"text\" name=\""+ title +"\" class=\"form-control\"></textarea>\n"+
+				"			<textarea type=\"text\" name=\""+ field.Name +"\" class=\"form-control\"></textarea>\n"+
 				"		</div>\n"+
 				"	</div>\n"
 			continue
@@ -329,7 +329,7 @@ func (s *GenService) createAddHtml() error{
 		fieldHtml +="	<div class=\"form-group\">\n" +
 			"		<label class=\"col-sm-3 control-label is-required\">" + title + "：</label>\n" +
 			"		<div class=\"col-sm-8\">\n"+
-			"			<input type=\"text\" name=\""+ title +"\" class=\"form-control\" required autocomplete=\"off\"/>\n"+
+			"			<input type=\"text\" name=\""+ field.Name +"\" class=\"form-control\" required autocomplete=\"off\"/>\n"+
 			"		</div>\n"+
 			"	</div>\n"
 	}
@@ -387,7 +387,7 @@ func (s *GenService) createEditHtml() error {
 				"		<div class=\"col-sm-8\">\n"+
 				"			<label class=\"radio-box\">\n"+
 				"				<input type=\"radio\" name=\"status\" value=\"0\" {{if eq $.info."+humpName+" \"0\"}} checked {{end}}/> 隐藏\n"+
-				"			</label>"+
+				"			</label>\n"+
 				"			<label class=\"radio-box\">\n"+
 				"				<input type=\"radio\" name=\"status\" value=\"1\" {{if eq $.info."+humpName+" \"1\"}} checked {{end}}/> 显示\n"+
 				"			</label>\n"+
@@ -401,7 +401,7 @@ func (s *GenService) createEditHtml() error {
 			fieldHtml +="	<div class=\"form-group\">\n" +
 				"		<label class=\"col-sm-3 control-label is-required\">" + title + "：</label>\n" +
 				"		<div class=\"col-sm-8\">\n"+
-				"			<textarea type=\"text\" name=\""+ title +"\" class=\"form-control\">{{.info."+humpName+"}}</textarea>\n"+
+				"			<textarea type=\"text\" name=\""+ field.Name +"\" class=\"form-control\">{{.info."+humpName+"}}</textarea>\n"+
 				"		</div>\n"+
 				"	</div>\n"
 			continue
@@ -411,7 +411,7 @@ func (s *GenService) createEditHtml() error {
 		fieldHtml +="	<div class=\"form-group\">\n" +
 			"		<label class=\"col-sm-3 control-label is-required\">" + title + "：</label>\n" +
 			"		<div class=\"col-sm-8\">\n"+
-			"			<input type=\"text\" name=\""+ title +"\" value=\"{{.info."+humpName+"}}\" class=\"form-control\" required autocomplete=\"off\"/>\n"+
+			"			<input type=\"text\" name=\""+ field.Name +"\" value=\"{{.info."+humpName+"}}\" class=\"form-control\" required autocomplete=\"off\"/>\n"+
 			"		</div>\n"+
 			"	</div>\n"
 	}

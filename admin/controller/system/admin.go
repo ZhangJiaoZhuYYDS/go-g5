@@ -169,7 +169,7 @@ func (c *AdminController) editRender(ctx *gin.Context, model core.IModel) {
 type adminExtend struct {
 	Roles  string `json:"roles" validate:"required" label:"所属角色"`
 	Struct string `json:"struct" validate:"required" label:"组织架构"`
-	Pos    string `json:"pos" validate:"required"  label:"岗位"`
+	Pos    string `json:"pos"`
 	Pwd    string `json:"pwd" validate:"omitempty,min=6,max=12" label:"密码"`
 }
 

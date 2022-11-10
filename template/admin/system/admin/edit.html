@@ -39,9 +39,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label is-required">岗位职位：</label>
+            <label class="col-sm-3 control-label">岗位职位：</label>
             <div class="col-sm-8">
-                <select name="pos" class="select2" data-width="90%"  id="posSelect" required>
+                <select name="pos" class="select2" data-width="90%"  id="posSelect" >
                     <option value="">选择岗位</option>
                     {{range $index,$item := .posList}}
                     <option value="{{$item.Id}}" {{if eq $item.Id $.posId}} selected {{end}}>{{$item.Name}}</option>
