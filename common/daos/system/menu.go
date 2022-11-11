@@ -9,6 +9,7 @@ package system
 import (
 	. "b5gocmf/common/models/system"
 	"b5gocmf/utils/core"
+	"b5gocmf/utils/types"
 	"sync"
 )
 
@@ -30,12 +31,12 @@ func NewMenuDao() *MenuDao {
 
 func (d *MenuDao) MenuTreeList() *[]MenuModel {
 	list := d.Model.NewSlice()
-	_ = core.NewDao(d.Model).SetField("id,parent_id,name").SetOrderBy(map[string]string{"parent_id": "asc", "list_sort": "asc", "id": "asc"}).Lists(list, "")
+	_ = core.NewDao(d.Model).SetField("id,parent_id,name").SetOrderBy([]types.KeyVal{{Key: "parent_id",Value: "asc"},{Key: "list_sort",Value: "asc"},{Key: "id",Value: "asc"}}).Lists(list, "")
 	return list
 }
 func (d *MenuDao) MenuLists()  *[]MenuModel {
 	list := d.Model.NewSlice()
-	_ = core.NewDao(d.Model).SetOrderBy(map[string]string{"parent_id": "asc", "list_sort": "asc", "id": "asc"}).Lists(list, "")
+	_ = core.NewDao(d.Model).SetOrderBy([]types.KeyVal{{Key: "parent_id"},{Key: "list_sort"},{Key: "id"}}).Lists(list, "")
 	return list
 }
 func (d *MenuDao) GetMenuShowLists(idList []string) *[]MenuModel {
@@ -47,6 +48,6 @@ func (d *MenuDao) GetMenuShowLists(idList []string) *[]MenuModel {
 		where += " AND id in (?)"
 		args = append(args, idList)
 	}
-	_= core.NewDao(d.Model).SetOrderBy(map[string]string{"parent_id": "asc", "list_sort": "asc", "id": "asc"}).Lists(list, where, args...)
+	_= core.NewDao(d.Model).SetOrderBy([]types.KeyVal{{Key: "parent_id",Value: "asc"},{Key: "list_sort",Value: "asc"},{Key: "id",Value: "asc"}}).Lists(list, where, args...)
 	return list
 }

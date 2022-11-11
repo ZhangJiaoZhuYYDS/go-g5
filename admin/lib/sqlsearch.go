@@ -8,6 +8,7 @@ package lib
 
 import (
 	"b5gocmf/utils/core"
+	"b5gocmf/utils/types"
 	"strconv"
 	"strings"
 	"time"
@@ -21,7 +22,7 @@ type FormSearch struct {
 	Where    string            //最终生成的 where 条件字符串
 	whereArr []string          //最终生成的 where 条件字数组
 	Args     []any             //最终生成的where 条件占位对应值数组
-	Order    map[string]string // 最终生成order 集合
+	Order    []types.KeyVal // 最终生成order 集合
 	Limit    string
 
 	BeforeWhere string
@@ -241,10 +242,17 @@ func (fs *FormSearch) parseOrder() {
 	}
 	order := fs.Order
 	if order == nil {
-		order = make(map[string]string)
+		order = make([]types.KeyVal,0)
 	}
-	if _, exist := order[fs.Data.OrderByColumn]; !exist {
-		order[fs.Data.OrderByColumn] = orderByAsc
+	has := false
+	for _, v := range order {
+		if v.Key == fs.Data.OrderByColumn {
+			has = true
+			break
+		}
+	}
+	if !has {
+		order = append(order, types.KeyVal{Key:fs.Data.OrderByColumn,Value: orderByAsc})
 	}
 	fs.Order = order
 }
@@ -285,7 +293,7 @@ func WithBeforeArgs(args []any) FormSearchWithFunc {
 		rs.BeforeArgs = args
 	}
 }
-func WithBeforeOrder(args map[string]string) FormSearchWithFunc {
+func WithBeforeOrder(args []types.KeyVal) FormSearchWithFunc {
 	return func(rs *FormSearch) {
 		rs.Order = args
 	}

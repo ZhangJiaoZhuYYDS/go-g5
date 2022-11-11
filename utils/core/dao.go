@@ -9,6 +9,7 @@ package core
 // ** 简单封装的基于IModel快速增删改查操作 ** //
 
 import (
+	"b5gocmf/utils/types"
 	"database/sql"
 	"errors"
 	"fmt"
@@ -20,7 +21,7 @@ type Dao struct {
 	IModel
 	TableName string //默认为TModel的Table()，可以自定义
 	Fields    string
-	OrderBy   map[string]string
+	OrderBy   []types.KeyVal
 	Limit     string
 }
 
@@ -314,7 +315,7 @@ func (dm *Dao) SetField(fields string) *Dao {
 	dm.Fields = fields
 	return dm
 }
-func (dm *Dao) SetOrderBy(order map[string]string) *Dao {
+func (dm *Dao) SetOrderBy(order []types.KeyVal) *Dao {
 	dm.OrderBy = order
 	return dm
 }
@@ -330,11 +331,19 @@ func (dm *Dao) SetTable(table string) *Dao {
 
 func (dm *Dao) buildOrder() string {
 	order := ""
-	for key, val := range dm.OrderBy {
+	for _, val := range dm.OrderBy {
+		field :=val.Key
+		if field == "" {
+			continue
+		}
+		asc :=val.Value
+		if asc == "" {
+			asc = "asc"
+		}
 		if order == "" {
-			order += key + " " + val
+			order += field + " " + asc
 		} else {
-			order += "," + key + " " + val
+			order += "," + field + " " + asc
 		}
 	}
 	if order != "" {

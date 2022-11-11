@@ -9,6 +9,7 @@ package system
 import (
 	. "b5gocmf/common/models/system"
 	"b5gocmf/utils/core"
+	"b5gocmf/utils/types"
 	"fmt"
 	"sync"
 )
@@ -31,7 +32,7 @@ func NewStructDao() *StructDao {
 
 func (d *StructDao) MenuTreeList() *[]StructModel {
 	list := d.Model.NewSlice()
-	_ = core.NewDao(d.Model).SetField("id,parent_id,name").SetOrderBy(map[string]string{"parent_id": "asc", "list_sort": "asc", "id": "asc"}).Lists(list, "")
+	_ = core.NewDao(d.Model).SetField("id,parent_id,name").SetOrderBy([]types.KeyVal{{Key: "parent_id"},{Key: "list_sort"},{Key: "id"}}).Lists(list, "")
 	return list
 }
 

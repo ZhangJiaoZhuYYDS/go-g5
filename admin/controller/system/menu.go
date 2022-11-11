@@ -12,6 +12,7 @@ import (
 	. "b5gocmf/common/models/system"
 	. "b5gocmf/common/services/system"
 	"b5gocmf/utils/core"
+	"b5gocmf/utils/types"
 	"errors"
 	"github.com/gin-gonic/gin"
 )
@@ -47,7 +48,7 @@ func NewMenuController() *MenuController {
 	return c
 }
 func (c *MenuController) FindList(ctx *gin.Context) {
-	c.GetIndex(ctx, NewMenuModel().NewSlice(), "", nil, map[string]string{"parent_id": "asc", "list_sort": "asc"})
+	c.GetIndex(ctx, NewMenuModel().NewSlice(), "", nil, []types.KeyVal{{Key: "parent_id"},{Key: "list_sort"}})
 }
 
 func (c *MenuController) Add(ctx *gin.Context) {

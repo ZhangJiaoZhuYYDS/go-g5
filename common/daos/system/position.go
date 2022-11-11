@@ -9,6 +9,7 @@ package system
 import (
 	. "b5gocmf/common/models/system"
 	"b5gocmf/utils/core"
+	"b5gocmf/utils/types"
 	"sync"
 )
 
@@ -30,7 +31,7 @@ func NewPositionDao() *PositionDao {
 
 func (d *PositionDao) GetLists() *[]PositionModel {
 	list := d.Model.NewSlice()
-	_ = core.NewDao(d.Model).SetOrderBy(map[string]string{"list_sort": "asc", "id": "asc"}).Lists(list, "")
+	_ = core.NewDao(d.Model).SetOrderBy([]types.KeyVal{{Key: "list_sort"},{Key: "id"}}).Lists(list, "")
 	return list
 }
 

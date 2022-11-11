@@ -13,6 +13,7 @@ import (
 	. "b5gocmf/common/services/system"
 	"b5gocmf/utils/core"
 	"b5gocmf/utils/trans"
+	"b5gocmf/utils/types"
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -53,7 +54,7 @@ func NewStructController() *StructController {
 }
 
 func (c *StructController) FindList(ctx *gin.Context) {
-	c.GetIndex(ctx, NewStructModel().NewSlice(), "", nil, map[string]string{"parent_id": "asc", "list_sort": "asc"})
+	c.GetIndex(ctx, NewStructModel().NewSlice(), "", nil, []types.KeyVal{{Key: "parent_id"},{Key: "list_sort"}})
 }
 
 func (c *StructController) indexAfter(ctx *gin.Context, list []any) []any {

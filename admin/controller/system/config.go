@@ -87,7 +87,7 @@ func (c *ConfigController) indexAfter(ctx *gin.Context, list []any) []any {
 
 // FindList 获取列表json
 func (c *ConfigController) FindList(ctx *gin.Context) {
-	c.GetIndex(ctx, NewConfigModel().NewSlice(), "", nil, map[string]string{"is_sys": "desc"})
+	c.GetIndex(ctx, NewConfigModel().NewSlice(), "", nil, []types.KeyVal{{Key: "is_sys",Value: "desc"}})
 }
 
 // Add 覆盖

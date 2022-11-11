@@ -51,7 +51,7 @@ func (ca *Controller) Index(ctx *gin.Context) {
 
 // GetIndex 处理列表查询操作的子方法，必须在具体控制中调用
 // @params  list any 是一个指针型的Model数组
-func (ca *Controller) GetIndex(ctx *gin.Context, list any, where string, replace []any, order map[string]string) {
+func (ca *Controller) GetIndex(ctx *gin.Context, list any, where string, replace []any, order []types.KeyVal) {
 	if replace == nil {
 		replace = make([]any, 0)
 	}
