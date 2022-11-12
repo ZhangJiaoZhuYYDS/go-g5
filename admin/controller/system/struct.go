@@ -8,6 +8,7 @@ package system
 
 import (
 	"b5gocmf/admin/lib"
+	"b5gocmf/admin/services"
 	. "b5gocmf/common/daos/system"
 	. "b5gocmf/common/models/system"
 	. "b5gocmf/common/services/system"
@@ -132,6 +133,15 @@ func (c *StructController) Tree(ctx *gin.Context) {
 }
 
 func (c *StructController) TreeList(ctx *gin.Context) {
-	list := NewStructService().TreeList()
+	res := NewStructService().TreeList()
+
+	dataScope := services.NewDataScopeFilterByCtx(ctx)
+	list := make([]StructModel,0)
+	for _, model := range res {
+		if dataScope.CheckByFiled(model.Id,"") {
+			list= append(list, model)
+		}
+	}
+	list = NewStructService().ReRootList(list)
 	c.Success(ctx, "", list)
 }

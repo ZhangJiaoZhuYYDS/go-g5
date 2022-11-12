@@ -101,20 +101,19 @@ func (s *StructService) GetChildAllIdList(pid string) []string {
 	}
 	return idList
 }
+
 // ReRootList 将一级的parent_id改为0
-func (s *StructService) ReRootList(list *[]StructModel) *[]StructModel {
-	ids := make([]string,len(*list))
-	newList := make([]StructModel,len(*list))
-	for i,v := range *list {
+func (s *StructService) ReRootList(list []StructModel) []StructModel {
+	ids := make([]string, len(list))
+	newList := make([]StructModel, len(list))
+	for i, v := range list {
 		ids[i] = v.Id
 	}
-	for _,v := range *list {
-		if !tool.InArray(v.ParentId,ids) {
+	for i, v := range list {
+		if !tool.InArray(v.ParentId, ids) {
 			v.ParentId = "0"
 		}
-		newList = append(newList, v)
+		newList[i] = v
 	}
-	return &newList
+	return newList
 }
-
-
