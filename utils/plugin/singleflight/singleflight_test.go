@@ -25,9 +25,27 @@ import (
 	"time"
 )
 
+func TestMore(t *testing.T)  {
+	g := &OnceFlightGroup{}
+
+	for i := 0; i < 100; i++ {
+		go func() {
+			_,_ = g.Do("key", func() (interface{}, error) {
+				time.Sleep(10*time.Millisecond)
+				fmt.Println("1")
+				return "bar", nil
+			})
+		}()
+	}
+	for  {
+		
+	}
+}
+
 func TestDo(t *testing.T) {
-	var g Group
+	g := &OnceFlightGroup{}
 	v, err := g.Do("key", func() (interface{}, error) {
+		fmt.Println("1")
 		return "bar", nil
 	})
 	if got, want := fmt.Sprintf("%v (%T)", v, v), "bar (string)"; got != want {
@@ -39,7 +57,7 @@ func TestDo(t *testing.T) {
 }
 
 func TestDoErr(t *testing.T) {
-	var g Group
+	g := &OnceFlightGroup{}
 	someErr := errors.New("some error")
 	v, err := g.Do("key", func() (interface{}, error) {
 		return nil, someErr
@@ -53,7 +71,7 @@ func TestDoErr(t *testing.T) {
 }
 
 func TestDoDupSuppress(t *testing.T) {
-	var g Group
+	g := &OnceFlightGroup{}
 	c := make(chan string)
 	var calls int32
 	fn := func() (interface{}, error) {

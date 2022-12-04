@@ -20,6 +20,6 @@ func InitMysql(conf config.DataBaseConf) *sqlx.DB {
 		log.Printf("%s数据库连接失败：%s\n", conf.Type, err.Error())
 	}
 	DbConn.SetMaxOpenConns(500)   // 最大连接数
-	DbConn.SetConnMaxIdleTime(20) // 最大空闲连接数
+	DbConn.SetMaxIdleConns(20) // 最大空闲连接数
 	return DbConn
 }
