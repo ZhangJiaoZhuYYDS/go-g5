@@ -32,16 +32,16 @@ database:
     host: "127.0.0.1"
     port: "3306"
     user: "root"
-    password: "root"
-    db-name: "b5gocmf"
+    password: "1234"
+    db-name: "db2"
     charset: "utf8mb4"
   test:
     driver: "mysql"
     host: "127.0.0.1"
     port: "3306"
     user: "root"
-    password: "root"
-    db-name: "b5laravel9cmf"
+    password: "1234"
+    db-name: "db2"
     charset: "utf8mb4"
 
 #redis配置
@@ -49,7 +49,7 @@ redis:
   default:
     host: "127.0.0.1"
     port: "6379"
-    password: "123456"
+#    password: "123456"
     database: 0
 
 
